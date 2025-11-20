@@ -54,7 +54,7 @@ jobs:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
 
-            # Connect container app to GHCR
+            # Connect Azure Container App to GHCR
             az containerapp registry set \
               -n ${{ env.AZURE_CONTAINER_APP_NAME }} \
               -g ${{ env.AZURE_GROUP_NAME }} \
@@ -62,7 +62,7 @@ jobs:
               --username ${{ github.actor }} \
               --password ${{ secrets.GITHUB_TOKEN }}
 
-            # Set environment variables REQUIRED by your Python code
+            # Set environment variables required by your FastAPI app
             az containerapp update \
               -n ${{ env.AZURE_CONTAINER_APP_NAME }} \
               -g ${{ env.AZURE_GROUP_NAME }} \
@@ -76,7 +76,7 @@ jobs:
                 SEARCH_API_KEY=${{ secrets.SEARCH_API_KEY }} \
                 SEARCH_INDEX_NAME=${{ secrets.SEARCH_INDEX_NAME }}
 
-            # Deploy new image
+            # Deploy your new image
             az containerapp update \
               -n ${{ env.AZURE_CONTAINER_APP_NAME }} \
               -g ${{ env.AZURE_GROUP_NAME }} \
