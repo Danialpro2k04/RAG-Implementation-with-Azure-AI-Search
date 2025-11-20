@@ -62,7 +62,7 @@ jobs:
               -g ${{ env.AZURE_GROUP_NAME }} \
               --server ghcr.io \
               --username ${{ github.actor }} \
-              --password ${{ secrets.GITHUB_TOKEN }}
+              --password ${{ secrets.GHCR_PAT }}
 
             # Set environment variables required by your FastAPI app
             az containerapp update \
